@@ -5,31 +5,40 @@ DB = Sequel.connect(connection_string)                                          
 #######################################################################################
 
 # Database schema - this should reflect your domain model
-DB.create_table! :events do
+DB.create_table! :apartments do
   primary_key :id
   String :title
-  String :description, text: true
-  String :date
-  String :location
+  String :address
 end
-DB.create_table! :rsvps do
+
+DB.create_table! :feedback do
   primary_key :id
-  foreign_key :event_id
-  Boolean :going
   String :name
   String :email
+  String :apartment
+  String :unit
   String :comments, text: true
 end
 
+DB.create_table! :users do
+  primary_key :id
+  String :name
+  String :email
+  String :password
+  String :unit
+end
+
 # Insert initial (seed) data
-events_table = DB.from(:events)
+apartments_table = DB.from(:apartments)
 
-events_table.insert(title: "Bacon Burger Taco Fest", 
-                    description: "Here we go again bacon burger taco fans, another Bacon Burger Taco Fest is here!",
-                    date: "June 21",
-                    location: "Kellogg Global Hub")
+apartments_table.insert(title: "X Denver", 
+                    address: "3100 Inca Street, Denver, CO 80202")
 
-events_table.insert(title: "Kaleapolooza", 
-                    description: "If you're into nutrition and vitamins and stuff, this is the event for you.",
-                    date: "July 4",
-                    location: "Nowhere")
+apartments_table.insert(title: "X Logan Square", 
+                    address: "2211 North Milwaukee Avenue, Chicago, IL 60647")
+
+apartments_table.insert(title: "X Chicago", 
+                    address: "710 West 14th Street, Chicago, IL 60607")
+
+apartments_table.insert(title: "X Tampa", 
+                    address: "719 N Florida Avenue, Tampa, FL 33602")

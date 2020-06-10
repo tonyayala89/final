@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- My own CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+
+  <title>X Denver</title>
+  </head>
+
+  <body>
+   
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="mx-auto" style="width: 850px;">
+                  <ul class="navbar-nav mr-auto">
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                      </li>
+                      
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/users/new">Create an Account<span class="sr-only">(current)</span></a>
+                      </li>
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/logins/new">Log In <span class="sr-only">(current)</span></a>
+                      </li>
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/feedback">Provide Feedback</a>
+                      </li>
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+                      </li>
+
+                  
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </nav>
+
+    <!-- Heading to be in between the nav bar and the jumbotron -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+        <div class="heading">
+          <h1><%= @apartments[:title] %></h1>
+          
+          <h2>Life's Better with Company</h2>
+        </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Section between jumbo and the icons -->
+    <div class="container">
+      <div class="row">
+        <div class="col text-center">
+          <h2><%= @apartments[:address] %></h2>
+          <iframe
+            width="600"
+            height="450"
+            frameborder="0" 
+            style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCtovsQvkIUWlNqtYwXY87gEd4ZSmJEhMw&q=<%= @lat_long %>&zoom=18" allowfullscreen>
+        </iframe>
+    </div>
+        
+      </div>
+
+
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+  </body>  
+</html>
+

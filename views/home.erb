@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Tamma+2:wght@400;500&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- My own CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="mx-auto" style="width: 800px;">
+                  <ul class="navbar-nav mr-auto">
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+                      </li>
+                      
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/users/new">Create an Account<span class="sr-only">(current)</span></a>
+                      </li>
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/logins/new">Log In <span class="sr-only">(current)</span></a>
+                      </li>
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/feedback">Provide Feedback</a>
+                      </li>
+
+                      <li class="nav-item active">
+                      <a class="nav-link" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+                      </li>
+
+                  
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </nav>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h2>Why X Social Communities?</h2>
+        </div>
+    </div>
+</div>
+
+
+      <!-- Icons -->
+      <div class="row mt-4">
+        <div class="col-sm-4 text-center">
+          <h1><i class="fas fa-building"></i></h1>
+          <h5>High-Class Units</h5>
+          <p>High end, fully furnished units you'll want to show your friends</p>
+        </div>
+        <div class="col-sm-4 text-center">
+          <h1><i class="fas fa-dumbbell"></i></h1>
+          <h5>High-Class Amenities</h5>
+          <p>Feel like exercising, working remotely, or laying by the pool? You can do it all!</p>
+        </div>
+        <div class="col-sm-4 text-center">
+          <h1><i class="fas fa-utensils"></i></h1>
+          <h5>A Neighborhood You'll Love</h5>
+          <p>Located in popular, fun neighborhoods where you won't run out of things to do!</p>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col text-center">
+            <h3>Our Apartments</h3>
+
+            <% for apartment in @apartments %>
+                <h4><a href="/apartments/<%= apartment[:id] %>"><%= apartment[:title] %></h4></p>
+            <% end %>
+
+        </div>
+    </div>
+</div>
+

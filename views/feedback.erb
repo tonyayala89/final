@@ -1,0 +1,35 @@
+
+<h1>Do You Love Where You Live?</h1>
+<p>Let us know how we are doing! We want you to love our community as much as we do!</p>
+
+<form action="/feedback/create" method="POST">
+    <div class="form-group">
+        <label>Name</label>
+        <textarea class="form-control" rows="1" name="name"></textarea>
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <textarea class="form-control" rows="1" name="email"></textarea>
+    </div>
+
+    <div class="form-group">
+    <label>Building</label>
+    <select class="form-control" name="apartment">
+      <option value="X Denver">X Denver</option>
+      <option value="X Logan Square">X Logan Square</option>
+      <option value="X Chicago">X Chicago</option>
+      <option value="X Tampa">X Tampa</option>
+
+    </select>
+  </div>
+  <div class="form-group">
+    <label>Unit</label>
+    <textarea class="form-control" rows="1" name="unit"></textarea>
+  </div>
+  <div class="form-group">
+    <label>Feedback</label>
+    <textarea class="form-control" rows="3" name="feedback"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

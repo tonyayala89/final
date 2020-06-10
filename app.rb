@@ -15,5 +15,123 @@ before { puts; puts "--------------- NEW REQUEST ---------------"; puts }       
 after { puts; }                                                                       #
 #######################################################################################
 
-# events_table = DB.from(:events)
-# rsvps_table = DB.from(:rsvps)
+apartments_table = DB.from(:apartments)
+feedback_table = DB.from(:feedback)
+users_table = DB.from(:users)
+
+# # read your API credentials from environment variables
+# account_sid = ENV["TWILIO_ACCOUNT_SID"]
+# auth_token = ENV["TWILIO_AUTH_TOKEN"]
+
+# # set up a client to talk to the Twilio REST API
+# client = Twilio::REST::Client.new(account_sid, auth_token)
+
+
+# # send the SMS from your trial Twilio number to your verified non-Twilio number
+# client.messages.create(
+# from: "+133664595980", 
+# to: "+16365790353",
+# body: "Thank you for signing up with X Social Communities!"
+# )
+
+
+before do
+    # SELECT * FROM users WHERE id = session[:user_id]
+    @current_user = users_table.where(:id => session[:user_id]).to_a[0]
+    puts @current_user.inspect
+end
+
+# Home page (all events)
+get "/" do
+    # before stuff runs
+    @apartments = apartments_table.all
+    view "home"
+end
+
+post "/" do
+    # before stuff runs
+    @apartments = apartments_table.all
+    view "home"
+end
+
+# Show a single event
+get "/apartments/:id" do
+    @users_table = users_table
+    # SELECT * FROM apartments WHERE id=:id
+    @apartments = apartments_table.where(:id => params["id"]).to_a[0]
+    # # SELECT * FROM rsvps WHERE event_id=:id
+    # @rsvps = rsvps_table.where(:event_id => params["id"]).to_a
+    # # SELECT COUNT(*) FROM rsvps WHERE event_id=:id AND going=1
+    # @count = rsvps_table.where(:event_id => params["id"], :going => true).count
+    results = Geocoder.search(@apartments[:address])
+    @lat_long = results.first.coordinates.join(",")
+    view "apartments"
+end
+
+# Form to create a new user
+get "/users/new" do
+    view "new_user"
+end
+
+# Receiving end of new user form
+post "/users/create" do
+    users_table.insert(:name => params["name"],
+                       :email => params["email"],
+                       :password => params["password"],
+                       :unit => params["unit"])
+    puts users_table.inspect
+    view "create_user"
+end
+
+# Form to login
+get "/logins/new" do
+    view "new_login"
+end
+
+# Feedback
+get "/feedback" do
+    @apartments = apartments_table.where(:id => params["id"]).to_a[0]
+    view "feedback"
+end
+
+# Receiving end of new RSVP form
+post "/feedback/create" do
+    feedback_table.insert(:name => params["name"],
+                       :apartment => params["apartment"],
+                       :unit => params["unit"],
+                       :comments => params["feedback"])
+    puts feedback_table.inspect
+    view "create_feedback"
+end
+
+
+
+
+# Receiving end of login form
+post "/logins/create" do
+    puts params
+    email_entered = params["email"]
+    password_entered = params["password"]
+    # SELECT * FROM users WHERE email = email_entered
+    user = users_table.where(:email => email_entered).to_a[0]
+    if user
+        puts user.inspect
+        # test the password against the one in the users table
+        if user[:password] == password_entered
+            session[:user_id] = user[:id]
+
+            view "create_login"
+        else
+            view "create_login_failed"
+        end
+    else 
+        view "create_login_failed"
+    end
+end
+
+
+# Logout
+get "/logout" do
+    session[:user_id] = nil
+    view "logout"
+end

@@ -36,33 +36,25 @@ users_table = DB.from(:users)
 
 
 before do
-    # SELECT * FROM users WHERE id = session[:user_id]
     @current_user = users_table.where(:id => session[:user_id]).to_a[0]
     puts @current_user.inspect
 end
 
-# Home page (all events)
+# Home page
 get "/" do
-    # before stuff runs
     @apartments = apartments_table.all
     view "home"
 end
 
 post "/" do
-    # before stuff runs
     @apartments = apartments_table.all
     view "home"
 end
 
-# Show a single event
+# Apartment Page
 get "/apartments/:id" do
     @users_table = users_table
-    # SELECT * FROM apartments WHERE id=:id
     @apartments = apartments_table.where(:id => params["id"]).to_a[0]
-    # # SELECT * FROM rsvps WHERE event_id=:id
-    # @rsvps = rsvps_table.where(:event_id => params["id"]).to_a
-    # # SELECT COUNT(*) FROM rsvps WHERE event_id=:id AND going=1
-    # @count = rsvps_table.where(:event_id => params["id"], :going => true).count
     results = Geocoder.search(@apartments[:address])
     @lat_long = results.first.coordinates.join(",")
     view "apartments"
@@ -94,7 +86,7 @@ get "/feedback" do
     view "feedback"
 end
 
-# Receiving end of new RSVP form
+# Receiving end of new feedback form
 post "/feedback/create" do
     feedback_table.insert(:name => params["name"],
                        :apartment => params["apartment"],
@@ -104,19 +96,14 @@ post "/feedback/create" do
     view "create_feedback"
 end
 
-
-
-
 # Receiving end of login form
 post "/logins/create" do
     puts params
     email_entered = params["email"]
     password_entered = params["password"]
-    # SELECT * FROM users WHERE email = email_entered
     user = users_table.where(:email => email_entered).to_a[0]
     if user
         puts user.inspect
-        # test the password against the one in the users table
         if user[:password] == password_entered
             session[:user_id] = user[:id]
 
